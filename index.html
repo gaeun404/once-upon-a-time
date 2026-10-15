@@ -6,10 +6,12 @@
 <title>Once upon a time</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=IM+Fell+English:ital@0;1&family=Song+Myung&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
+@font-face { font-family: 'Cafe24Ssurround'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff'); font-display: swap; }
 /* Layout: a split-screen 3D stage (left = 1P 하루, right = 2P 하나) with a 2D HUD canvas on top; menus are DOM overlays with candy buttons. */
-:root { --frame: #3b2a1e; --cream: #f6ecd8; --ink: #3b2a1e; --soft: #7a5a3a; --logo: "Song Myung", serif; --ui: "Gaegu", system-ui, sans-serif; color-scheme: light; }
+:root { --frame: #3b2a1e; --cream: #f6ecd8; --ink: #3b2a1e; --soft: #7a5a3a; --logo: "Cafe24Ssurround", "Pretendard Variable", sans-serif; --ui: "Pretendard Variable", Pretendard, system-ui, sans-serif; color-scheme: light; }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html, body { margin: 0; min-height: 100%; }
@@ -24,8 +26,30 @@ body { background: #2b211c; color: var(--ink); font-family: var(--ui); -webkit-u
 .ov { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(30,20,14,.55); padding: 12px; overflow: auto; z-index: 3; }
 .card { background: var(--cream); border: 2px solid var(--frame); border-radius: 4px; padding: 18px 22px; max-width: 640px; width: 100%; display: grid; gap: 10px; text-align: center; box-shadow: 4px 5px 0 rgba(0,0,0,.3); }
 .card h2 { margin: 0; font-family: var(--logo); font-weight: 400; font-size: 32px; color: #7a2e1e; }
-.card p { margin: 0; color: var(--soft); line-height: 1.5; font-size: 18px; }
-#ovTitle { background: radial-gradient(ellipse 55% 42% at 50% 42%, rgba(30,18,10,.55), rgba(30,18,10,0) 100%), linear-gradient(rgba(0,0,0,0) 40%, rgba(30,18,10,.45)), url(assets/bg1.jpg) center / cover; }
+.card p { margin: 0; color: var(--soft); line-height: 1.55; font-size: 16px; }
+#ovTitle { background: #1e1612; overflow: hidden; padding: 0; }
+#ovTitle::before { content: ""; position: absolute; inset: -24px; background: url(assets/intro1.jpg) center / cover; filter: blur(6px) brightness(.55) saturate(.9); }
+#ovTitle::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 40% 50%, rgba(255,200,120,.12), rgba(10,6,4,.6) 75%); pointer-events: none; }
+.cover-scene { position: relative; z-index: 1; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 6%; }
+.tome { position: relative; height: 84%; aspect-ratio: .74; transform: rotate(-2.5deg); border-radius: 4px 10px 10px 4px;
+  background-color: #6b2230;
+  background-image: radial-gradient(ellipse at 35% 25%, rgba(255,235,210,.12), transparent 60%), repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 2px, transparent 2px 4px), repeating-linear-gradient(-45deg, rgba(0,0,0,.06) 0 2px, transparent 2px 4px);
+  box-shadow: 22px 26px 40px rgba(0,0,0,.6), inset 16px 0 16px -10px rgba(0,0,0,.55), inset 22px 0 0 -18px rgba(255,255,255,.08); }
+.tome::after { content: ""; position: absolute; right: -9px; top: 7px; bottom: 7px; width: 9px; border-radius: 0 4px 4px 0; background: repeating-linear-gradient(90deg, #efe3c8 0 1px, #cdbb98 1px 2px); box-shadow: 4px 4px 10px rgba(0,0,0,.4); }
+.tome-inner { position: absolute; inset: 6% 7% 6% 9%; border: 2px solid #c9a24a; outline: 1px solid rgba(201,162,74,.7); outline-offset: 5px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; padding: 4% 6%; }
+.tome-title { margin: 0; text-align: center; font-family: "IM Fell English", serif; font-style: italic; font-weight: 400; font-size: clamp(28px, 5.2vw, 72px); line-height: .95;
+  background: linear-gradient(180deg, #f8e7aa 0%, #d6a945 55%, #f3d78e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 1px 0 rgba(40,10,10,.7)); }
+.tome-title span { display: block; }
+.tome-win { width: 88%; aspect-ratio: 4 / 3; overflow: hidden; border: 3px solid #c9a24a; border-radius: 48% 48% 6px 6px / 36% 36% 6px 6px; box-shadow: inset 0 0 0 3px #4a1520, 0 3px 8px rgba(0,0,0,.45); }
+.tome-win img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.92) sepia(.08); }
+.tome-sub { margin: 0; font-family: var(--logo); font-size: clamp(12px, 1.6vw, 22px); letter-spacing: .25em; color: #e2c172; text-shadow: 0 1px 0 rgba(40,10,10,.7); }
+.cover-menu { display: flex; flex-direction: column; gap: 14px; width: min(27%, 300px); }
+.cover-menu .btn { width: 100%; }
+.cover-menu > .btn:nth-of-type(odd) { transform: rotate(-1deg); } .cover-menu > .btn:nth-of-type(even) { transform: rotate(.8deg); }
+.cover-menu > .btn:hover { transform: translate(-1px, -1px) rotate(0); }
+.cover-note { margin: 0 0 2px; text-align: center; font-family: var(--logo); font-weight: 400; font-size: clamp(15px, 1.8vw, 22px); color: #f3e2b8; text-shadow: 0 2px 6px rgba(0,0,0,.6); transform: rotate(-2deg); }
+.cover-row { display: flex; gap: 10px; } .cover-row .btn { flex: 1; }
+@media (max-width: 640px) { .cover-scene { gap: 4%; } .tome { height: 76%; } .cover-menu { width: 34%; gap: 8px; } }
 .titlebox { display: grid; gap: 14px; justify-items: center; }
 .title-type { margin: 0 0 8px; text-align: center; color: #fff4dc; font-weight: 400; text-shadow: 0 2px 0 #3b2a1e, 0 0 24px rgba(30,18,10,.55); }
 .title-type .en { display: block; font-family: "IM Fell English", serif; font-style: italic; font-size: clamp(44px, 8.4vw, 104px); line-height: 1; letter-spacing: .01em; }
@@ -33,39 +57,39 @@ body { background: #2b211c; color: var(--ink); font-family: var(--ui); -webkit-u
 .logo-img { width: min(460px, 66%); height: auto; filter: drop-shadow(0 6px 12px rgba(30,18,10,.45)); }
 @keyframes bob { 50% { transform: translateY(-6px) rotate(-1deg); } }
 .row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.btn { position: relative; padding: 6px 22px 8px; border: 2px solid var(--frame); border-radius: 3px; box-shadow: 3px 3px 0 var(--frame); cursor: pointer; transition: transform .08s, box-shadow .08s; font-family: var(--ui); font-weight: 700; font-size: 26px; color: var(--ink); background: #f6ecd8; }
+.btn { position: relative; padding: 6px 22px 8px; border: 2px solid var(--frame); border-radius: 3px; box-shadow: 3px 3px 0 var(--frame); cursor: pointer; transition: transform .08s, box-shadow .08s; font-family: var(--logo); font-weight: 400; font-size: 22px; color: var(--ink); background: #f6ecd8; }
 .btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--frame); }
 .btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--frame); }
 .btn:focus-visible { outline: 3px solid #c0392b; outline-offset: 3px; }
-.btn.small { font-size: 20px; padding: 3px 14px 5px; }
+.btn.small { font-size: 17px; padding: 4px 14px 6px; }
 .btn.sky { background: #dfe9ef; }
 .btn.mint { background: #e1ecdc; }
 .btn.sun { background: #f3e2b8; }
 .btn.grape { background: #e7dfe9; }
 .btn.red { background: #f0d6cf; }
-.tips { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; color: var(--soft); font-size: 18px; }
+.tips { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; color: var(--soft); font-size: 15px; }
 .keys { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; }
-.keys div { background: #fffaf0; border: 1px solid #c9b48f; border-radius: 3px; padding: 8px 10px; font-size: 17px; line-height: 1.5; }
-.keys b { color: #a8323a; font-size: 18px; }
+.keys div { background: #fffaf0; border: 1px solid #c9b48f; border-radius: 3px; padding: 8px 10px; font-size: 14px; line-height: 1.7; }
+.keys b { color: #a8323a; font-size: 16px; font-family: var(--logo); font-weight: 400; }
 .keys .p2 b { color: #2f6f9e; }
-kbd { font-family: var(--ui); font-weight: 700; background: #f6ecd8; border: 1px solid #9a845f; border-bottom-width: 2px; border-radius: 3px; padding: 0 5px; font-size: 15px; }
+kbd { font-family: var(--ui); font-weight: 600; background: #f6ecd8; border: 1px solid #9a845f; border-bottom-width: 2px; border-radius: 3px; padding: 0 5px; font-size: 15px; }
 .story { position: absolute; inset: 0; z-index: 4; background: #1b1026; }
-.book { display: grid; grid-template-columns: 0.8fr 1.2fr; width: min(100%, 900px); max-height: 100%; background: #f6ecd8; border: 4px solid #6b4a2f; border-radius: 10px 18px 18px 10px; box-shadow: 0 8px 0 #4a2f1d, inset 0 0 40px rgba(120,80,40,.25); font-family: "Song Myung", serif; color: #4a2f1d; overflow: hidden; }
+.book { display: grid; grid-template-columns: 0.8fr 1.2fr; width: min(100%, 900px); max-height: 100%; background: #f6ecd8; border: 4px solid #6b4a2f; border-radius: 10px 18px 18px 10px; box-shadow: 0 8px 0 #4a2f1d, inset 0 0 40px rgba(120,80,40,.25); font-family: "Cafe24Ssurround", sans-serif; color: #4a2f1d; overflow: hidden; }
 .book .page { padding: 18px 22px; overflow: auto; }
 .book .page.left { border-right: 2px solid rgba(107,74,47,.35); box-shadow: inset -18px 0 24px -18px rgba(80,50,20,.35); display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; justify-content: center; }
 .toc-head { font-size: 44px; letter-spacing: .1em; color: #7a2e1e; }
 .toc-sub { margin: -8px 0 0; font-style: italic; color: #9a7a5a; }
 .toc-note span { display: inline-block; }
-.toc-note { margin: 0; font-family: var(--ui); font-size: 17px; line-height: 1.4; color: #7a5a3a; }
-.toc-total { font-family: var(--ui); font-size: 19px; font-weight: 700; color: #a8323a; }
+.toc-note { margin: 0; font-family: var(--ui); font-size: 14px; line-height: 1.6; color: #7a5a3a; }
+.toc-total { font-family: var(--logo); font-size: 17px; color: #a8323a; }
 .toc-mode { display: flex; gap: 6px; }
-.pill { font-family: var(--ui); font-weight: 700; font-size: 18px; padding: 2px 14px; border-radius: 3px; border: 2px solid #3b2a1e; background: #fffaf0; color: #6b4a2f; cursor: pointer; }
+.pill { font-family: var(--logo); font-weight: 400; font-size: 15px; padding: 2px 14px; border-radius: 3px; border: 2px solid #3b2a1e; background: #fffaf0; color: #6b4a2f; cursor: pointer; }
 .pill.on { background: #3b2a1e; color: #f6ecd8; }
 .toc-ch { display: grid; grid-template-columns: 88px 1fr; gap: 10px; align-items: start; padding: 8px 0; border-bottom: 1px dashed rgba(107,74,47,.35); }
 .toc-ch img { width: 88px; height: 56px; object-fit: cover; border-radius: 8px; border: 2px solid #c99a2e; }
 .toc-ch.locked img { filter: grayscale(1) brightness(.7); }
 .toc-ch h3 { margin: 0 0 4px; font-size: 18px; font-weight: 400; color: #7a2e1e; }
-.toc-room { display: flex; justify-content: space-between; gap: 8px; width: 100%; font-family: var(--ui); font-weight: 700; font-size: 17px; background: none; border: 0; border-radius: 8px; padding: 3px 6px; color: #4a2f1d; cursor: pointer; text-align: left; }
+.toc-room { display: flex; justify-content: space-between; gap: 8px; width: 100%; font-family: var(--ui); font-weight: 600; font-size: 14px; background: none; border: 0; border-radius: 8px; padding: 3px 6px; color: #4a2f1d; cursor: pointer; text-align: left; }
 .toc-room:hover:not(:disabled) { background: rgba(59,42,30,.08); text-decoration: underline; }
 .toc-room:disabled { color: #b8a58f; cursor: default; }
 .toc-room .dots { color: #a8323a; white-space: nowrap; }
@@ -89,7 +113,7 @@ kbd { font-family: var(--ui); font-weight: 700; background: #f6ecd8; border: 1px
 .story.cine::before { top: 0; transform-origin: top; } .story.cine::after { bottom: 0; transform-origin: bottom; }
 @keyframes bars { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 .story.cine .line { left: 0; right: 0; bottom: 9%; transform: none; width: auto; background: linear-gradient(transparent, rgba(13,8,20,.78)); border: 0; border-radius: 0; box-shadow: none; padding: 40px 8% 16px; z-index: 3; }
-.story.cine .line p { color: #fff8ec; font-family: var(--ui); font-weight: 700; font-size: clamp(17px, 2.6vw, 28px); line-height: 1.5; text-shadow: 0 2px 6px rgba(0,0,0,.7); letter-spacing: .01em; }
+.story.cine .line p { color: #fff8ec; font-family: var(--ui); font-weight: 600; font-size: clamp(15px, 2.2vw, 24px); line-height: 1.5; text-shadow: 0 2px 6px rgba(0,0,0,.7); letter-spacing: .01em; }
 .story.cine .line small { color: rgba(255,240,220,.55); }
 .story.cine .skip { z-index: 4; top: calc(9% + 10px); }
 .story .fadein { position: absolute; inset: 0; background: #0d0814; z-index: 5; pointer-events: none; opacity: 0; transition: opacity .8s ease; }
@@ -106,16 +130,23 @@ kbd { font-family: var(--ui); font-weight: 700; background: #f6ecd8; border: 1px
     <div class="loading" id="loading">인형들을 깨우는 중…</div>
 
     <div class="ov" id="ovTitle" hidden>
-      <div class="titlebox">
-        <h1 class="title-type"><span class="en">Once upon a time</span><span class="ko">하루와 하나의 동화책</span></h1>
-        <div class="row">
-          <button class="btn" id="btnTwo">둘이서 하기</button>
-          <button class="btn sky" id="btnSolo">혼자 하기</button>
+      <div class="cover-scene">
+        <div class="tome">
+          <div class="tome-inner">
+            <h1 class="tome-title"><span>Once upon</span><span>a time</span></h1>
+            <div class="tome-win"><img src="assets/intro5.jpg" alt=""></div>
+            <p class="tome-sub">하루와 하나의 동화책</p>
+          </div>
         </div>
-        <div class="row">
-          <button class="btn small mint" id="btnCont" hidden>이어하기</button>
-          <button class="btn small grape" id="btnToc">차례</button>
-          <button class="btn small sun" id="btnKeys">조작법</button>
+        <div class="cover-menu">
+          <p class="cover-note">오늘은 누구랑 읽을까?</p>
+          <button class="btn" id="btnTwo">둘이서 하기</button>
+          <button class="btn" id="btnSolo">혼자 하기</button>
+          <button class="btn" id="btnCont" hidden>이어하기</button>
+          <div class="cover-row">
+            <button class="btn small" id="btnToc">차례</button>
+            <button class="btn small" id="btnKeys">조작법</button>
+          </div>
         </div>
       </div>
     </div>
@@ -506,7 +537,7 @@ function letterTex(ch, col) {
     g.fillStyle = '#' + new THREE.Color(col).getHexString(); g.fillRect(0, 0, w, h);
     const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(255,255,255,.25)'); gr.addColorStop(1, 'rgba(0,0,0,.08)'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
     g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 7; rrect(g, 12, 12, w - 24, h - 24, 14); g.stroke();
-    g.font = '72px "Song Myung", serif, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = '72px "Cafe24Ssurround", sans-serif, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
     g.lineWidth = 10; g.strokeStyle = 'rgba(70,40,90,.35)'; g.strokeText(ch, w / 2, h / 2 + 5); g.fillStyle = '#fff'; g.fillText(ch, w / 2, h / 2 + 5);
   }));
 }
@@ -1742,12 +1773,12 @@ function project(v, i) { const p = v.clone().project(cams[i]); return { x: (p.x 
 
 /* ===================== HUD ===================== */
 function txt(s, x, y, size, fill, align = 'center', lw = 5, font = 'Jua') {
-  hud.font = font === 'logo' ? `${size}px "Song Myung", serif` : `700 ${Math.round(size * 1.12)}px Gaegu, sans-serif`; hud.textAlign = align; hud.textBaseline = 'alphabetic'; hud.lineJoin = 'round';
+  hud.font = font === 'logo' ? `${size}px "Cafe24Ssurround", sans-serif` : `700 ${Math.round(size * 0.98)}px "Pretendard Variable", sans-serif`; hud.textAlign = align; hud.textBaseline = 'alphabetic'; hud.lineJoin = 'round';
   hud.lineWidth = lw * 0.7; hud.strokeStyle = '#2b1d14'; if (lw) hud.strokeText(s, x, y); hud.fillStyle = fill; hud.fillText(s, x, y);
 }
 function wrapLines(text, size, maxW) {
   // split at a space near the middle when a line is too wide (Korean wraps between words)
-  hud.font = `700 ${Math.round(size * 1.12)}px Gaegu, sans-serif`;
+  hud.font = `700 ${Math.round(size * 0.98)}px "Pretendard Variable", sans-serif`;
   if (hud.measureText(text).width <= maxW) return [text];
   const words = text.split(' '); let best = null;
   for (let i = 1; i < words.length; i++) { const a = words.slice(0, i).join(' '), b = words.slice(i).join(' '); const m = Math.max(hud.measureText(a).width, hud.measureText(b).width); if (!best || m < best.m) best = { m, l: [a, b] }; }
@@ -1762,7 +1793,7 @@ function drawStamp() {
   hud.strokeStyle = '#d9324f'; hud.fillStyle = 'rgba(255,240,235,.85)'; hud.lineWidth = 7;
   hud.beginPath(); hud.arc(0, 0, 92, 0, Math.PI * 2); hud.fill(); hud.stroke();
   hud.lineWidth = 3; hud.beginPath(); hud.arc(0, 0, 80, 0, Math.PI * 2); hud.stroke();
-  hud.fillStyle = '#d9324f'; hud.textAlign = 'center'; hud.font = '30px "Song Myung", serif'; hud.fillText('참 잘했어요', 0, 4);
+  hud.fillStyle = '#d9324f'; hud.textAlign = 'center'; hud.font = '30px "Cafe24Ssurround", sans-serif'; hud.fillText('참 잘했어요', 0, 4);
   for (let i = 0; i < G.stamp.total; i++) { const im = IMG.button; if (!im.complete) break; hud.globalAlpha = (i < G.stamp.got ? 1 : 0.25) * Math.min(1, k * 1.5) * 0.92; hud.drawImage(im, -38 + i * 26, 18, 24, 24); }
   hud.globalAlpha = 1;
   for (let i = 0; i < 5; i++) { const a = -Math.PI / 2 + (i - 2) * 0.32; hud.beginPath(); hud.arc(Math.cos(a) * 66, Math.sin(a) * 66 + 4, 4, 0, Math.PI * 2); hud.fill(); }
@@ -1777,15 +1808,15 @@ function drawPaper(T, ox) {
   hud.save(); hud.translate(ox, 0);
   hud.strokeStyle = '#c99a2e'; hud.lineWidth = 3; hud.strokeRect(26, 22, GW - 52, GH - 44); hud.lineWidth = 1; hud.strokeRect(36, 32, GW - 72, GH - 64);
   const cx = GW / 2, img = IMG['bg' + R.ch], iw = 560, ih = 315, ix = cx - iw / 2, iy = 150;
-  hud.textAlign = 'center'; hud.fillStyle = '#9a6a3a'; hud.font = '24px "Song Myung", serif';
+  hud.textAlign = 'center'; hud.fillStyle = '#9a6a3a'; hud.font = '24px "Cafe24Ssurround", sans-serif';
   hud.fillText(R.boss ? '마지막 장' : `제 ${R.ch} 장`, cx, 98);
   hud.save(); hud.beginPath(); if (hud.roundRect) hud.roundRect(ix, iy - 30, iw, ih, 18); else hud.rect(ix, iy - 30, iw, ih); hud.clip();
   if (img && img.complete) hud.drawImage(img, ix, iy - 30, iw, ih); hud.restore();
   hud.strokeStyle = '#c99a2e'; hud.lineWidth = 5; hud.beginPath(); if (hud.roundRect) hud.roundRect(ix, iy - 30, iw, ih, 18); else hud.rect(ix, iy - 30, iw, ih); hud.stroke();
-  hud.fillStyle = '#5a2e1a'; hud.font = '46px "Song Myung", serif';
+  hud.fillStyle = '#5a2e1a'; hud.font = '46px "Cafe24Ssurround", sans-serif';
   hud.fillText(R.boss ? '마지막 페이지' : CH[R.ch], cx, iy + ih + 28);
-  hud.fillStyle = '#8a5a3a'; hud.font = '24px "Song Myung", serif'; hud.fillText(R.name, cx, iy + ih + 66);
-  hud.fillStyle = '#b09070'; hud.font = '16px "Song Myung", serif'; hud.fillText(`${T.idx + 1}`, cx, GH - 44);
+  hud.fillStyle = '#8a5a3a'; hud.font = '24px "Cafe24Ssurround", sans-serif'; hud.fillText(R.name, cx, iy + ih + 66);
+  hud.fillStyle = '#b09070'; hud.font = '16px "Cafe24Ssurround", sans-serif'; hud.fillText(`${T.idx + 1}`, cx, GH - 44);
   hud.restore();
 }
 function drawTrans() {
@@ -1821,7 +1852,7 @@ function drawHUD() {
     const x0 = i === 0 ? 18 : GW - 230, col = i === 0 ? '#a8323a' : '#2f6f9e';   // panels hug the outer corners so the centre stays free
     rr(hud, x0 - 6, 14, 230, 56, 4); hud.fillStyle = 'rgba(246,236,216,.92)'; hud.fill(); hud.strokeStyle = '#3b2a1e'; hud.lineWidth = 2; hud.stroke();
     const face = IMG[i === 0 ? 'haru' : 'hana']; if (face.complete) hud.drawImage(face, x0, 16, 52 * face.naturalWidth / face.naturalHeight, 52);
-    txt(p.name, x0 + 56, 40, 24, col, 'left', 0);
+    txt(p.name, x0 + 56, 40, 24, col, 'left', 0, 'logo');
     const ab = R.ch === 2 ? (i === 0 ? ['i_water', '물뿌리개 E'] : ['i_water', '바람개비 Enter']) : R.ch === 3 ? (i === 0 ? ['i_light', '손전등 E'] : ['i_crayon', '크레용 Enter']) : null;
     if (ab) { const icon = i === 1 && R.ch === 2 ? null : IMG[ab[0]]; let lx = x0 + 56; if (icon && icon.complete) { const iw = Math.min(30, 20 * icon.naturalWidth / icon.naturalHeight); hud.drawImage(icon, lx, 46, iw, 20); lx += iw + 6; } txt(ab[1], lx, 62, 14, '#7a5a3a', 'left', 0); }
     else txt(i === 0 ? 'WASD · Space' : '방향키 · /', x0 + 56, 62, 14, '#7a5a3a', 'left', 0);
@@ -1829,7 +1860,7 @@ function drawHUD() {
     // speech bubble above each doll (in its own view)
     if (p.say) {
       const s = project(new THREE.Vector3(p.pos.x, p.pos.y + 1.9, p.pos.z), i);
-      if (s.z < 1) { hud.font = '700 21px Gaegu, sans-serif'; const w = hud.measureText(p.say.text).width + 24; rr(hud, s.x - w / 2, s.y - 34, w, 30, 5); hud.fillStyle = '#fbf3e2'; hud.fill(); hud.strokeStyle = '#3b2a1e'; hud.lineWidth = 2; hud.stroke(); txt(p.say.text, s.x, s.y - 13, 18, '#3b2a1e', 'center', 0); }
+      if (s.z < 1) { hud.font = '700 18px "Pretendard Variable", sans-serif'; const w = hud.measureText(p.say.text).width + 24; rr(hud, s.x - w / 2, s.y - 34, w, 30, 5); hud.fillStyle = '#fbf3e2'; hud.fill(); hud.strokeStyle = '#3b2a1e'; hud.lineWidth = 2; hud.stroke(); txt(p.say.text, s.x, s.y - 13, 18, '#3b2a1e', 'center', 0); }
     }
     // partner off-screen arrow
     const o = players[1 - i], s2 = project(new THREE.Vector3(o.pos.x, o.pos.y + 1, o.pos.z), i);
@@ -2011,7 +2042,7 @@ function loop(now) {
 }
 document.addEventListener('pointerdown', ensureAudio, { once: true });
 document.addEventListener('click', e => { if (e.target.closest('button')) { ensureAudio(); sfx('ui'); } });
-Promise.all([...['haru', 'hana', 'bear'].map(n => loadGLB(n).then(m => { MODELS[n] = m; })), document.fonts ? Promise.all(['700 20px Gaegu', '20px "Song Myung"'].map(f => document.fonts.load(f).catch(() => {}))) : null]).then(() => {
+Promise.all([...['haru', 'hana', 'bear'].map(n => loadGLB(n).then(m => { MODELS[n] = m; })), document.fonts ? Promise.all(['700 20px "Pretendard Variable"', '20px Cafe24Ssurround'].map(f => document.fonts.load(f).catch(() => {}))) : null]).then(() => {
   $('loading').hidden = true; toTitle(); requestAnimationFrame(loop);
 });
 })();
