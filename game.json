@@ -1,0 +1,21 @@
+{
+  "title": "Once upon a time",
+  "description": "다투던 남매 하루와 하나가 낡은 동화책 속으로 빨려 들어가 작은 헝겊 인형이 되었어요! 화면을 반으로 나눠 둘이 함께 헨젤과 그레텔의 과자집, 잭과 콩나무 구름 나라, 이상한 나라, 신데렐라의 무도회를 지나 마지막 페이지를 빼앗은 곰 대왕을 물리쳐요. 친구 머리 밟고 점프, 마법 콩 키우기, 바람으로 날려 주기, 손전등과 크레용, 호박 마차까지 — 서로 도와야만 풀리는 동화 같은 3D 협동 모험이에요. 혼자서도 Tab으로 번갈아 조종할 수 있어요.",
+  "thumbnail": "thumb.png",
+  "controls": [
+    "keyboard",
+    "gamepad"
+  ],
+  "players": "2-local",
+  "aspectRatio": "16:9",
+  "tags": [
+    "협동",
+    "2인용",
+    "3D",
+    "플랫포머",
+    "동화",
+    "퍼즐"
+  ],
+  "madeWith": "Claude Code + Higgsfield",
+  "sdk": true
+}
